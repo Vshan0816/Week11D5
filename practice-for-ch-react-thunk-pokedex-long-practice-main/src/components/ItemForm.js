@@ -21,7 +21,7 @@ const ItemForm = ({ itemId, hideForm }) => {
     //   happiness,
     //   price
     // };
-    
+
     let returnedItem;
     if (returnedItem) {
       hideForm();
