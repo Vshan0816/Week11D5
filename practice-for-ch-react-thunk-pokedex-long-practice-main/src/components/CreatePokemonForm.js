@@ -38,8 +38,7 @@ const CreatePokemonForm = ({ hideForm }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e)
-    
+
     const payload = {
       number,
       attack,
@@ -51,7 +50,7 @@ const CreatePokemonForm = ({ hideForm }) => {
       move2,
       moves: [move1, move2]
     };
-    
+
     dispatch(createPokemon(payload)).then((createdPokemon)=>{
       if (createdPokemon) {
         history.push(`/pokemon/${createdPokemon.id}`);
@@ -59,8 +58,8 @@ const CreatePokemonForm = ({ hideForm }) => {
       }
     })
 
-    
-    
+
+
   };
 
   const handleCancelClick = (e) => {
