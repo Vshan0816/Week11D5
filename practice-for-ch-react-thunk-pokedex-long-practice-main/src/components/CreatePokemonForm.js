@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getPokemonTypes } from '../store/pokemon';
+import { createPokemon } from '../store/pokemon';
 
 const CreatePokemonForm = ({ hideForm }) => {
   const pokeTypes = useSelector(state => state.pokemon.types);
@@ -37,24 +38,29 @@ const CreatePokemonForm = ({ hideForm }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(e)
+    
+    const payload = {
+      number,
+      attack,
+      defense,
+      imageUrl,
+      name,
+      type,
+      move1,
+      move2,
+      moves: [move1, move2]
+    };
+    
+    dispatch(createPokemon(payload)).then((createdPokemon)=>{
+      if (createdPokemon) {
+        history.push(`/pokemon/${createdPokemon.id}`);
+        hideForm();
+      }
+    })
 
-    // const payload = {
-    //   number,
-    //   attack,
-    //   defense,
-    //   imageUrl,
-    //   name,
-    //   type,
-    //   move1,
-    //   move2,
-    //   moves: [move1, move2]
-    // };
-
-    let createdPokemon;
-    if (createdPokemon) {
-      history.push(`/pokemon/${createdPokemon.id}`);
-      hideForm();
-    }
+    
+    
   };
 
   const handleCancelClick = (e) => {
